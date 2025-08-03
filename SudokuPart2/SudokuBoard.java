@@ -185,9 +185,40 @@ public class SudokuBoard{
       }
       return isValid();//if all characters found, return the validity of the board
       }
+      public boolean solve(){
+         boolean boardSolved=false;
+        
+         if (!isValid()){
+            return false;
+         } else if (isSolved()){
+            return true;
+         }else{
+            for (int row=0;row<9;row++){
+               for (int col=0;col<9;col++){
+                  if (contents[row][col]==('.')){
+                     char[] myChar={'1','2','3','4','5','6','7','8','9'};
+                     for(char mycharacter: myChar){
+                        contents[row][col]=mycharacter;
+                        if (solve()){
+                           return true;
+                        }
+                        contents[row][col] = '.';
+                       }
+                       return false;
+                
+                 }
+                }
+               }
+             }
+             return false;
+
+           }
+                               
+                  
 
             
 }
+
 //    Checking empty board...passed.
  // Checking incomplete, valid board...passed.
  // Checking complete, valid board...passed.
@@ -195,5 +226,5 @@ public class SudokuBoard{
  // Checking row violating board...passed.
  // Checking col violating board...passed.
  // Checking row&col violating board...passed.
- Checking mini-square violating board...passed.
- **** HORRAY: ALL TESTS PASSED ****
+ // Checking mini-square violating board...passed.
+ // **** HORRAY: ALL TESTS PASSED ****
